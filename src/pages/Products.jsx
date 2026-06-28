@@ -3,7 +3,7 @@ import { getData } from "../context/DataContext";
 import { useEffect, useState } from "react";
 import FilterSection from "../components/FilterSection";
 
-import Loading from "../assets/loading4.webm";
+import Loading from "../assets/Loading4.webm";
 import ProductCard from "../components/ProductCard";
 import Pagination from "../components/Pagination";
 import * as LottieModule from "lottie-react";
