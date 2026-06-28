@@ -14,6 +14,7 @@ import SingleProduct from "./pages/SingleProduct";
 import CategoryProduct from "./pages/CategoryProduct";
 import { useCart } from "./context/CartContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { SignIn, SignUp } from "@clerk/clerk-react";
 const App = () => {
   const [location, setLocation] = useState();
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -40,19 +41,6 @@ const App = () => {
     getLocation();
   }, []);
 
-  // Load cart from local storage on initial render
-  // useEffect(() => {
-  //   const storedCart = localStorage.getItem('cartItem')
-  //   if (storedCart) {
-  //     setCartItem(JSON.parse(storedCart));
-  //   }
-  // },[]);
-
-  // // save cart to local storage whenever it changes
-  // useEffect(() => {
-  //   localStorage.setItem("cartItem", JSON.stringify(cartItem));
-  // },[cartItem]);
-
   return (
     <BrowserRouter>
       <Navbar
@@ -70,9 +58,14 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route
           path="/cart"
-          element={<ProtectedRoute><Cart location={location} getLocation={getLocation}/>
-          </ProtectedRoute>}
+          element={
+            <ProtectedRoute>
+              <Cart location={location} getLocation={getLocation} />
+            </ProtectedRoute>
+          }
         />
+        <Route path="/sign-in/*" element={<SignIn />} />
+        <Route path="/sign-up/*" element={<SignUp />} />
       </Routes>
       <Footer />
     </BrowserRouter>
